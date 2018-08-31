@@ -11,7 +11,19 @@ namespace Pacze.Tests
 		[Test]
 		public void Dupa()
 		{
-			const string operations = @"[{ ""op"": ""replace"", ""path"": ""/dupa"", ""value"": ""po"" }]";
+			const string operations =
+@"[
+	{ ""op"": ""replace"", ""path"": ""/dupa"", ""value"": ""po"" },
+
+	{ ""op"": ""add"", ""path"": ""/items/-"", ""value"": { ""name"": ""three"" } },
+
+	{ ""op"": ""remove"", ""path"": ""/items/0"" },
+	{ ""op"": ""add"", ""path"": ""/items/0"", ""value"": { ""name"": ""one"" } },
+	{ ""op"": ""remove"", ""path"": ""/items/0"" },
+	{ ""op"": ""add"", ""path"": ""/items/0"", ""value"": { ""name"": ""one"" } },
+	{ ""op"": ""remove"", ""path"": ""/items/0"" },
+	{ ""op"": ""add"", ""path"": ""/items/0"", ""value"": { ""name"": ""one"" } }
+]";
 
 			var response = WebRequestHelper.WebInvoke(HostUri + "/my-service/69", "PATCH", "application/json", operations);
 
